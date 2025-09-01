@@ -7,6 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import { Toaster } from "sonner";
 import { Helmet } from "react-helmet";
 import { useEffect } from "react";
+import ProtectedRoute from '../app/ProtectedRoute'
 
 const AppContent = () => {
   const { user } = useAuth();
@@ -17,7 +18,7 @@ const AppContent = () => {
       case "/":
         return { title: "PayPulse | Home" };
       case "/dashboard":
-        return { title: `PayPulse | ${user?.name || "User"}'s Dashboard` };
+        return { title: `PayPulse | ${user?.name}` || `My Dashboard` };
       case "/login":
         return { title: "PayPulse | Login" };
       case "/register":
@@ -42,9 +43,15 @@ const AppContent = () => {
       <Toaster position="top-center" />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+
+
+        <ProtectedRoute requiredRole={'admin'}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </ProtectedRoute>
+
+
       </Routes>
     </>
   );
