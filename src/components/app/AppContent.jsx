@@ -47,9 +47,16 @@ const AppContent = () => {
         <Route path="/login" element={<Login />} />
 
 
-        <ProtectedRoute requiredRole={'admin'}>
-          <Route path="/dashboard" element={<Dashboard />} />
-        </ProtectedRoute>
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute requiredRole="admin">
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+
 
 
       </Routes>
