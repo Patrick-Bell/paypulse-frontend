@@ -13,8 +13,8 @@ export const AuthProvider = ({ children }) => {
    const login = async (formData) => {
         try{
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/login`, { user: formData }, { withCredentials: true });
-            console.log(response.data, response.data.user)
-            setUser(response.data.user)
+            console.log(response?.data, response?.data?.user)
+            setUser(response?.data?.user)
             setIsAuthenticated(true);
             navigate('/dashboard')
         }catch(e){

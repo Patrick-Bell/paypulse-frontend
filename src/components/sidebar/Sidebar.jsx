@@ -20,6 +20,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // Required Tippy core styles
+import Logo from '../assets/newlogo.png'
 
 
 
@@ -31,7 +32,7 @@ const Sidebar = ({ activeTab, setActiveTab, sidebarOpen, setSidebarOpen }) => {
     { id: 'month', label: 'This Month', icon: Calendar1, pro: false  },
     { id: 'shifts', label: 'My Shifts', icon: Calendar, pro: false  },
     { id: 'addshift', label: 'Add Shift', icon: Plus, pro: false  },
-    { id: 'goals', label: 'Goals', icon: Target, pro: true },
+    //{ id: 'goals', label: 'Goals', icon: Target, pro: true },
     { id: 'payslips', label: 'Payslips', icon: FileText, pro: false  },
     { id: 'message', label: 'Chatbot', icon: MessageCircle, pro: true },
     { id: 'reports', label: 'Reports', icon: File, pro: false  },
@@ -56,13 +57,7 @@ const Sidebar = ({ activeTab, setActiveTab, sidebarOpen, setSidebarOpen }) => {
         {/* Top Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 flex-shrink-0">
           <div className="flex items-center space-x-3">
-            <div className="bg-gradient-to-br from-indigo-500 to-purple-600 p-2 rounded-lg">
-              <Clock className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-gray-900">PayPulse</h1>
-              <p className="text-xs text-gray-500">Your Wage Tracker</p>
-            </div>
+            <img className='h-11' src={Logo} />
           </div>
           <button 
             onClick={() => setSidebarOpen(false)}

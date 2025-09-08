@@ -1,37 +1,39 @@
 import { useAuth } from "../context/AuthContext"
 import { useState, useEffect } from 'react'
-import { Navigate } from "react-router"
+import { Navigate } from "react-router-dom"
 
-const ProtectedRoute = ({ requiredRole }) => {
+const ProtectedRoute = ({ requiredRole, children }) => {
+  const { user, isAuthenticated, checkAuth } = useAuth()
+  const [loading, setLoading] = useState(true)
 
-    const { user, isAuthenticated, checkAuth } = useAuth()
-
+  useEffect(() => {
     const verifyUser = async () => {
-        try {
-            await checkAuth()
-        } catch (error) {
-            console.error("Error checking authentication:", error)
-        }
+      try {
+        await checkAuth()  // e.g. restore user from token/localStorage
+      } catch (error) {
+        console.error("Error checking authentication:", error)
+      } finally {
+        setLoading(false)
+      }
     }
+    verifyUser()
+  }, [])
 
-    useEffect(() => {
-        verifyUser()
-    }, [])
+  if (loading) {
+    return <p>Loading...</p> // or a spinner
+  }
 
-    const authenticated = isAuthenticated && user && user.role === requiredRole
+  if (!isAuthenticated || !user) {
+    console.log("User is not authenticated")
+    return <Navigate to="/" />
+  }
 
-    if (!authenticated) {
-        console.log('User is not authenticated');
-        return <Navigate to="/" />;
-      }
-    
-      if (requiredRole && userRole !== requiredRole) {
-        console.log('User does not have the required role');
-        return <Navigate to="/" />;
-      }
-    
-      return children;
+  if (requiredRole && user.role !== requiredRole) {
+    console.log("User does not have the required role")
+    return <Navigate to="/" />
+  }
 
+  return children
 }
 
 export default ProtectedRoute

@@ -19,4 +19,9 @@ export const deleteContact = async (id) => {
 export const addContactToBook = async (id) => {
     window.open(`${apiUrl}/download-contact/${id}`, "_blank");
   };
+
+export const editContact = async (id, contactData) => {
+    const response = await axios.put(`${apiUrl}/contacts/${id}`, { contact: contactData }, { withCredentials: true});
+    return response.data;
+}
   

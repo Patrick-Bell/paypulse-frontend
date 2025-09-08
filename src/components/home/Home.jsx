@@ -71,14 +71,21 @@ const WageTrackerHomepage = () => {
             </nav>
             
             {/* Desktop Auth Buttons */}
-            <div className="hidden md:flex space-x-3">
-              <button onClick={() => window.open('/login')} className="px-4 py-2 text-purple-600 hover:text-purple-700 transition-colors cursor-pointer hover:text-purple-700">
+            {!user ? (
+              <div className="hidden md:flex space-x-3">
+              <button onClick={() => window.open('/login')} className="px-4 py-2 text-purple-600 transition-colors cursor-pointer hover:text-purple-700">
                 Sign In
               </button>
               <button onClick={() => window.open('/register')} className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors cursor-pointer">
                 Register
               </button>
             </div>
+            ):(
+              <div>
+                <button onClick={() => window.open('/dashboard')} className='px-4 py-2 rounded-lg bg-indigo-600 text-white text-md hover:bg-indigo-700 cursor-pointer'>My Dashboard</button>
+              </div>
+            )}
+            
             
             {/* Mobile Menu Button */}
             <button 
@@ -150,9 +157,16 @@ const WageTrackerHomepage = () => {
                 <div className="text-sm opacity-75">Hours Tracked</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold">
-                  £<CountUp end={10000} duration={5}/>+
-                </div>
+              <div className="text-3xl font-bold">
+              {/* Mobile */}
+              <span className="sm:hidden">
+                £<CountUp end={10} suffix="k" duration={5}/>+
+              </span>
+              {/* Desktop */}
+              <span className="hidden sm:inline">
+                £<CountUp end={10000} duration={5}/>+
+              </span>
+            </div>
                 <div className="text-sm opacity-75">Wages Calculated</div>
               </div>
             </div>

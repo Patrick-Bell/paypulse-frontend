@@ -21,6 +21,7 @@ import Contacts from '../contact/Contacts';
 import { Toaster } from 'sonner';
 import ProfilePage from '../profile/Profile';
 import Message from '../messages/Message';
+import Report from '../reports/Report'
 import UnderConstructionPage from '../sidebar/UnderConstructionPage';
 
 const Dashboard = () => {
@@ -32,7 +33,7 @@ const Dashboard = () => {
     { id: 'month', label: 'This Month', icon: DollarSign },
     { id: 'shifts', label: 'My Shifts', icon: Calendar },
     { id: 'timesheet', label: 'Timesheet', icon: Clock },
-    { id: 'goals', label: 'Goals', icon: Target },
+    //{ id: 'goals', label: 'Goals', icon: Target },
     { id: 'payslips', label: 'Payslips', icon: FileText },
     { id: 'contact', label: 'Contacts', icon: DollarSign },
     { id: 'reports', label: 'Reports', icon: User },
@@ -65,8 +66,8 @@ const Dashboard = () => {
           return ( <AddShift />)
         case 'payslips':
           return ( <PayslipsView /> )
-        case 'goals':
-          return <UnderConstructionPage />
+        //case 'goals':
+          //return <UnderConstructionPage />
         case 'month':
           return ( <ThisMonth />)
         case 'contact':
@@ -75,6 +76,8 @@ const Dashboard = () => {
           return (<ProfilePage />)
         case 'message':
           return (<Message />)
+        case 'reports':
+          return (<Report />)
       default:
         return (
           <div className="rounded-xl p-8 border border-gray-200 text-center">

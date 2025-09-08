@@ -18,7 +18,7 @@ const AppContent = () => {
       case "/":
         return { title: "PayPulse | Home" };
       case "/dashboard":
-        return { title: `PayPulse | ${user?.name}` || `My Dashboard` };
+        return { title: `PayPulse | My Dashboard` };
       case "/login":
         return { title: "PayPulse | Login" };
       case "/register":
@@ -50,7 +50,7 @@ const AppContent = () => {
         <Route
           path="/dashboard"
           element={
-            <ProtectedRoute requiredRole="admin">
+            <ProtectedRoute requiredRole="user">
               <Dashboard />
             </ProtectedRoute>
           }

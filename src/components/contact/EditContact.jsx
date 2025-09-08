@@ -18,10 +18,10 @@ import {
   XCircleIcon
 } from 'lucide-react';
 import { createShift } from '../routes/ShiftRoutes';
-import { createContact } from '../routes/ContactRoutes';
+import { createContact, editContact } from '../routes/ContactRoutes';
 import { toast } from 'sonner';
 
-const AddContact = ({ contact, setSelectedContact }) => {
+const AddContact = ({ contact, setSelectedContact, setOpen }) => {
 
   const [formData, setFormData] = useState({
     first_name: contact?.first_name || '',
@@ -77,12 +77,13 @@ const AddContact = ({ contact, setSelectedContact }) => {
       return;
     }
     try{
-        const response = await createContact(formData)
-        toast.success('Contact created successfully!', {
+        const response = await editContact(contact?.id, formData)
+        toast.success('Contact edited successfully!', {
           description: 'You can now view this contact in your contacts list.',
           duration: 3000,
         });
         setOpen(false)
+        setSelectedContact(null)
     }catch(e){
       console.log(e)
     }
@@ -251,14 +252,14 @@ const AddContact = ({ contact, setSelectedContact }) => {
                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t border-gray-200">
                   <button
                     onClick={(e) => handleSubmit(e, false)}
-                    className="flex items-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all"
+                    className="flex items-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all cursor-pointer"
                   >
                     <Save className="w-4 h-4" />
-                    Create Contact
+                    Edit Contact
                   </button>
                   <button
                     onClick={() => setOpen(false)}
-                    className="flex items-center gap-2 px-3 py-2 bg-white hover:bg-gray-50 text-gray-600 font-semibold rounded-xl border border-gray-200 transition-all"
+                    className="flex items-center gap-2 px-3 py-2 bg-white hover:bg-gray-50 text-gray-600 font-semibold rounded-xl border border-gray-200 transition-all cursor-pointer"
                   >
                     <X onClick={() => setSelectedContact(null)} className="w-4 h-4" />
                     Close

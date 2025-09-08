@@ -2,9 +2,11 @@ import { Banknote, TrendingUp, Coffee, Car, Home, ShoppingBag } from "lucide-rea
 import { useEffect, useState } from "react"
 import { getExpenses } from '../routes/ExpenseRoutes'
 import { formatCurrency } from '../functions/Format'
+import ExpenseModal from "./ExpenseModal"
 
 const Expenses = () => {
     const [expenses, setExpenses] = useState([])
+    const [open, setOpen] = useState(false)
 
     const fetchExpenses = async () => {
         const response = await getExpenses()
@@ -79,13 +81,26 @@ const Expenses = () => {
                 </div>
             </div>
 
+            {open && (
+                <ExpenseModal isOpen={open} setIsOpen={setOpen} expenses={expenses}/>
+            )}
+
            
 
             {/* Trend Indicator */}
             <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between text-sm">
                 <div>
-                <p className="text-xs text-gray-400">
-                    {expenses.filter(exp => exp.expensable).length} {expenses.filter(exp => exp.expensable).length === 1 ? 'expense is' : 'expenses are'} eligible for reimbursement.
+                <p className={`text-xs text-gray-400`}>
+                    <span 
+                    onClick={() => { if (expenses.filter((exp) => exp.expensable).length > 0) setOpen(true) }}
+                    className={`${expenses.filter((exp) => exp.expensable).length > 0 ? 'underline' : ''}
+                    ${expenses.filter((exp) => exp.expensable).length > 0 ? 'font-bold' : ''}
+                    ${expenses.filter((exp) => exp.expensable).length > 0 ? 'cursor-pointer' : ''} 
+                    mr-1`}
+                    >
+                    {expenses.filter(exp => exp.expensable).length}
+                    </span>
+                     {expenses.filter(exp => exp.expensable).length === 1 ? 'expense is' : 'expenses are'} eligible for reimbursement.
                 </p>
                 </div>
                 <div className="text-gray-700 text-sm font-medium">{formatCurrency(summary.reduce((acc, item) => item.amount + acc, 0))}</div>

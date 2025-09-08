@@ -5,8 +5,8 @@ import Logo from '../assets/logo.png'
 import { toast } from 'sonner';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('patrickbell1302@gmail.com');
+  const [password, setPassword] = useState('D6277itzkl');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({})
