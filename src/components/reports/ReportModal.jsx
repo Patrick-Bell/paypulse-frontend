@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { X, Check, DollarSign, MapPin, Calendar, BarChart3 } from "lucide-react";
+import { X, Check, DollarSign, MapPin, Calendar, BarChart3, AlarmClock } from "lucide-react";
 import { createReport } from "../routes/ReportRoutes";
 import { toast } from "sonner";
 
-const ReportModal = ({ isOpen, setIsOpen }) => {
+const ReportModal = ({ isOpen, setIsOpen, fetchReports }) => {
   const [reportName, setReportName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -17,8 +17,6 @@ const ReportModal = ({ isOpen, setIsOpen }) => {
         "Gross pay",
         "Net pay", 
         "Tax deductions",
-        "National Insurance",
-        "Pension contributions"
       ]
     },
     {
@@ -27,10 +25,9 @@ const ReportModal = ({ isOpen, setIsOpen }) => {
       items: [
         "Shift dates & times",
         "Location details",
-        "Company assignments",
+        "Company details",
         "Shift duration",
-        "Break times",
-        "Job categories"
+        "Expenses"
       ]
     },
     {
@@ -40,25 +37,24 @@ const ReportModal = ({ isOpen, setIsOpen }) => {
         "Total shifts worked",
         "Shifts completed",
         "Shifts cancelled",
-        "Attendance rate",
         "Average shift length",
-        "Monthly trends"
+        "Best performing shift",
+        "Least performing shift"
       ]
     },
     {
-      icon: MapPin,
-      title: "Location Analytics",
+      icon: AlarmClock,
+      title: 'Coming Soon',
       items: [
-        "Top locations worked",
-        "Travel distances",
-        "Regional pay rates",
-        "Location preferences",
-        "Client feedback scores"
-      ]
+        "In depth chart analysis",
+        "AI-generated insights",
+        "Create reports by companies",
+        "Create reports by locations",
+    ]
     }
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     createReport({ name: reportName, start_date: startDate, end_date: endDate });
     setReportName("");
@@ -68,6 +64,7 @@ const ReportModal = ({ isOpen, setIsOpen }) => {
     toast.success("Report Created!", {
         description: "Your report has been successfully created.",
     });
+    await fetchReports()
   };
 
   if (!isOpen) return null;

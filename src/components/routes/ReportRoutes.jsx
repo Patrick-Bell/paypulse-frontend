@@ -12,4 +12,8 @@ export const getReports = async () => {
     return response.data;
 }
 
+export const deleteReport = async (id) => {
+    const response = await axios.delete(`${apiUrl}/reports/${id}`, { withCredentials: true});
+    return response.data;
+}
   
