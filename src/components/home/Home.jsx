@@ -146,13 +146,13 @@ const WageTrackerHomepage = () => {
             <div className="grid grid-cols-3 gap-8 mt-16 max-w-2xl mx-auto">
               <div className="text-center">
                 <div className="text-3xl font-bold">
-                  <CountUp end={50} duration={5}/>+
+                  <CountUp end={100} duration={5}/>+
                 </div>
-                <div className="text-sm opacity-75">Registered Users</div>
+                <div className="text-sm opacity-75">Shifts Added</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold">
-                  <CountUp end={300} duration={5}/>+
+                  <CountUp end={500} duration={5}/>+
                 </div>
                 <div className="text-sm opacity-75">Hours Tracked</div>
               </div>
@@ -324,9 +324,8 @@ const WageTrackerHomepage = () => {
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-8 h-8 text-yellow-400 fill-current" />
               ))}
-              <span className="ml-3 text-2xl font-bold text-gray-900">4.9/5</span>
+              <span className="ml-3 text-2xl font-bold text-gray-900">5/5</span>
             </div>
-            <p className="text-xl text-gray-600">Based on 1,000+ reviews</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
@@ -337,8 +336,8 @@ const WageTrackerHomepage = () => {
                 ))}
               </div>
               <p className="text-gray-600 mb-4">"Best wage tracker I've ever used! The payslip generation feature saves me hours every month."</p>
-              <div className="font-semibold text-gray-900">Sarah Johnson</div>
-              <div className="text-sm text-gray-600">Freelance Designer</div>
+              <div className="font-semibold text-gray-900">Mike</div>
+              <div className="text-sm text-gray-600">Sales Assistant</div>
             </div>
             
             <div className="bg-white p-8 rounded-2xl border border-gray-200">
@@ -348,7 +347,7 @@ const WageTrackerHomepage = () => {
                 ))}
               </div>
               <p className="text-gray-600 mb-4">"PayPulse Pro is worth every penny. The analytics help me optimize my work schedule perfectly."</p>
-              <div className="font-semibold text-gray-900">Mike Chen</div>
+              <div className="font-semibold text-gray-900">Joseph</div>
               <div className="text-sm text-gray-600">Gig Worker</div>
             </div>
             
@@ -359,7 +358,7 @@ const WageTrackerHomepage = () => {
                 ))}
               </div>
               <p className="text-gray-600 mb-4">"Simple, intuitive, and incredibly powerful. PayPulse transformed how I manage my finances."</p>
-              <div className="font-semibold text-gray-900">Emma Rodriguez</div>
+              <div className="font-semibold text-gray-900">Emma</div>
               <div className="text-sm text-gray-600">Part-time Worker</div>
             </div>
           </div>
@@ -400,11 +399,6 @@ const WageTrackerHomepage = () => {
             </div>
             
             <div className="bg-white p-6 rounded-xl border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">What about holiday pay and sick leave?</h3>
-              <p className="text-gray-600">PayPulse Pro tracks your accrued holiday entitlement based on hours worked, helping you know exactly how much paid time off you've earned.</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl border border-gray-200">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Can I prove to my manager I'm working more than my contract?</h3>
               <p className="text-gray-600">Absolutely! PayPulse shows you clear data comparing your actual hours worked vs your contracted hours - perfect evidence for requesting more guaranteed hours.</p>
             </div>
@@ -436,10 +430,6 @@ const WageTrackerHomepage = () => {
             <div>
               <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
               <div className="space-y-4">
-                <div className="flex items-center">
-                  <Phone className="w-5 h-5 text-gray-400 mr-3" />
-                  <span className="text-gray-300">0208 980 1431</span>
-                </div>
                 <div className="flex items-center">
                   <Mail className="w-5 h-5 text-gray-400 mr-3" />
                   <span className="text-gray-300">paypulse@gmail.com</span>

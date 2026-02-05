@@ -268,7 +268,7 @@ const Overview = () => {
                   {goalsWithProgress.length === 0 ? (
                     <div className='flex flex-col h-70 w-full items-center justify-center'>
                     <CircleX className='text-gray-500'/>
-                    <p className='text-sm text-gray-500 mt-2'>No Goals. Click <span>here</span> to add a goal</p>
+                    <p className='text-sm text-gray-500 mt-2'>Coming soon...</p>
                   </div>
                   ):(
                     <div>
