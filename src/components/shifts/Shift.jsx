@@ -388,7 +388,7 @@ const Shift = () => {
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">
                         <h3 className="text-lg font-semibold text-gray-900">
-                          {shift.name.length <= 20 ? shift.name : (shift.name).slice(0, 20) + '...'}
+                          {shift.name.length <= 20 ? shift.name : (shift.name).slice(0, 17) + '...'}
                           
                         </h3>
                         <div className="flex items-center gap-2 mt-1">
