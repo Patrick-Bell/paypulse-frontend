@@ -51,8 +51,10 @@ const Shift = () => {
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
+
   const [shiftsName, setShiftsName] = useState('All Shifts')
   const [shifts, setShifts] = useState([]);
+  const [years, setYears] = useState([])
   const [filterredShifts, setFilteredShifts] = useState([]);
   const [totalStats, setTotalStats] = useState({
     totalHours: '',
@@ -70,6 +72,7 @@ const Shift = () => {
       setShifts(response)
       setFilteredShifts(response);
       setCompanies([...new Set(response.map(shift => shift?.company))]);
+      setYears([...new Set(response.map(shift => new Date(shift?.date).getFullYear()))])
 
       setLoading(false)
     }catch(e){
@@ -160,7 +163,8 @@ const Shift = () => {
     setFilters({
       status: 'all',
       month: 'all',
-      companies: 'all'
+      companies: 'all',
+      year: 'all'
     });
   };
 
@@ -177,12 +181,16 @@ const Shift = () => {
 
     if (filters.companies !== 'all') {
       filtered = filtered.filter(shift => shift.company === filters.companies)
+    }
 
+    if (filters.year !== 'all') {
+      filtered = filtered.filter(shift => new Date(shift.date).getFullYear() === parseInt(filters.year))
     }
   
     // Add other filters here (e.g., dateRange, minPay) if needed
   
     setFilteredShifts(filtered);
+
 
     const validShifts = filtered.filter(shift => shift.status !== 'cancelled');
   
@@ -506,6 +514,25 @@ const Shift = () => {
                       {months.map((month, index) => (
                         <option key={month} value={index + 1}>
                           {month}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-4">
+                      <Calendar className="w-4 h-4 text-blue-500" />
+                      Year
+                    </label>
+                    <select
+                      value={filters.year}
+                      onChange={(e) => handleFilterChange('year', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white transition-all"
+                    >
+                      <option value="all">All Years</option>
+                      {years.map((year, index) => (
+                        <option key={year} value={year}>
+                          {year}
                         </option>
                       ))}
                     </select>

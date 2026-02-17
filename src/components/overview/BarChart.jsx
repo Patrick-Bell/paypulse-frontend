@@ -27,7 +27,6 @@ const SixMonthChart = () => {
         shiftsByMonthYear[key].push(shift);
       });
   
-      // Generate the last 4 months dynamically
       const now = new Date();
       const last4Months = [];
       for (let i = 3; i >= 0; i--) {
